@@ -1,16 +1,38 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
     <title>Document</title>
-    <script src="index.js"></script>
 </head>
+
 <body>
-    <h1 class="cityName"></h1>
+    <div class="container">
+
+    
+    <div class="search-area">
+        <h1>Search</h1>
+        <input type="text" class="search-bar"></input>
+        <button class="submit">Submit!</button>
+        <div class="results">
+
+        </div>
+    </div>
+
+    <div class="results-area">
+        <h1>Current Weather</h1>
+        <p class="weather"></p>
+    </div>
+</div>
+
+<!-- <h1 class="cityName"></h1>
     <div class="currentWeather"></div>
     <p>current weather</p>
     <button onclick="getWeather(boston, 'Boston');" class="boston">Boston</button>
-    <button onclick="getWeather(newYorkCity, 'New York');" class="newYorkCity">New York City</button>
+    <button onclick="getWeather(newYorkCity, 'New York');" class="newYorkCity">New York City</button> -->
+<script src="index.js"></script>
 </body>
+
 </html>

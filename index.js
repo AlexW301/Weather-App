@@ -2,32 +2,37 @@
 
 const apiKey = '57df789ae4965f62a6a161f8b63d7642'
 
-const boston = '4930956'
-const newYorkCity = '5128581'
-
-
-let getWeather = async (city, cityName) => {
+let getWeather = async (city) => {
     let response = await fetch(`http://api.openweathermap.org/data/2.5/weather?id=${city}&units=imperial&appid=${apiKey}`)
     let data = await response.json();
-    document.querySelector('.currentWeather').innerHTML = data.main.temp;
-    document.querySelector('.cityName').innerHTML = cityName
+    document.querySelector('.weather').textContent = `${data.main.temp}°F`;
     return data.main.temp;
 }
 
-getWeather(boston, 'Boston');
-// getWeather(newYorkCity, 'New York');
-
-let cities = []
-
-let getCities = async () => {
+let searchCity = async (cityName) => {
     let response = await fetch('city.list.json');
     let data = await response.json();
-    cities.push(data)
-    console.log(data)
+    let searchArr = data.filter(res => res.name.includes(cityName))
+    searchArr.forEach(element => {
+        const para = document.createElement("p")
+        para.classList.add('result-item')
+        const node = document.createTextNode(`${element.name}${element.state ? `, ${element.state}` : ''}, ${element.country}`)
+        para.appendChild(node)
+        document.querySelector('.results').appendChild(para)
+        para.addEventListener('click', function(){
+            getWeather(element.id)
+            console.log(element.id)
+        })
+    });
+    console.log(searchArr)
+    // console.log(data.find(el => el.name = "Boston"))
 }
 
-getCities();
-console.log(cities)
+document.querySelector('.submit').addEventListener('click', function() {
+    searchCity(document.querySelector('.search-bar').value)
+})
+
+// console.log(cities.find(element => element === 'Boston'))
 
 
 

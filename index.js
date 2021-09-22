@@ -14,10 +14,20 @@ let getWeather = async (city, cityName) => {
     return data.main.temp;
 }
 
-document.querySelector('.boston').onClick = getWeather(boston, 'Boston');
-// getWeather(boston, 'Boston');
+getWeather(boston, 'Boston');
 // getWeather(newYorkCity, 'New York');
 
+let cities = []
+
+let getCities = async () => {
+    let response = await fetch('city.list.json');
+    let data = await response.json();
+    cities.push(data)
+    console.log(data)
+}
+
+getCities();
+console.log(cities)
 
 
 
